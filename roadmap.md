@@ -1,8 +1,8 @@
 # Roadmap
 
 - [x] Prepare and approve the portfolio project update plan.
-- [ ] Add the five supplied project covers.
-- [ ] Remove Flash Card and Quote App.
-- [ ] Add GitHub links to the six matching projects.
-- [ ] Keep generated covers for Payment Field and Temporary Chat.
+- [x] Add the five supplied project covers.
+- [x] Remove Flash Card and Quote App.
+- [x] Add GitHub links to the six matching projects.
+- [x] Keep generated covers for Payment Field and Temporary Chat.
 - [ ] Verify desktop and mobile presentation.
