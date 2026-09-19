@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -106,6 +107,66 @@ const projects = [
 ];
 
 function Portfolio() {
+  const heroRef = useRef<HTMLElement>(null);
+  const photoRef = useRef<HTMLImageElement>(null);
+  const tintRef = useRef<HTMLDivElement>(null);
+  const projectRefs = useRef<Array<HTMLElement | null>>([]);
+  const progressRef = useRef<HTMLDivElement>(null);
+  const [activeProject, setActiveProject] = useState(0);
+
+  useEffect(() => {
+    let animationFrame = 0;
+
+    const updatePhoto = () => {
+      const hero = heroRef.current;
+      const photo = photoRef.current;
+      const tint = tintRef.current;
+      if (!hero || !photo || !tint) return;
+
+      const bounds = hero.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, -bounds.top / (bounds.height * 0.62)));
+      photo.style.setProperty("--photo-progress", String(progress));
+      tint.style.setProperty("--photo-progress", String(progress));
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(animationFrame);
+      animationFrame = requestAnimationFrame(updatePhoto);
+    };
+
+    updatePhoto();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        const index = Number((visible.target as HTMLElement).dataset.projectIndex);
+        if (!Number.isNaN(index)) setActiveProject(index);
+      },
+      { rootMargin: "-28% 0px -38% 0px", threshold: [0.15, 0.35, 0.6] },
+    );
+
+    projectRefs.current.forEach((project) => {
+      if (project) observer.observe(project);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const progress = progressRef.current;
+    if (!progress) return;
+    progress.style.height = `${(activeProject / (projects.length - 1)) * 100}%`;
+  }, [activeProject]);
+
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl">
@@ -127,7 +188,7 @@ function Portfolio() {
         </div>
       </header>
 
-      <section id="top" className="relative flex min-h-[92vh] items-center border-b border-border pt-16">
+      <section ref={heroRef} id="top" className="relative flex min-h-[92vh] items-center border-b border-border pt-16">
         <div className="pointer-events-none absolute inset-0 portfolio-grid opacity-40" />
         <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:py-28">
           <div>
@@ -157,10 +218,12 @@ function Portfolio() {
             <div className="absolute -inset-5 border border-primary/20" />
             <div className="relative aspect-[4/5] overflow-hidden bg-muted">
               <img
+                ref={photoRef}
                 src={heroPhoto.url}
                 alt="Portrait of Omar Badawy"
-                className="h-full w-full object-cover grayscale transition duration-700 hover:grayscale-0"
+                className="hero-photo h-full w-full object-cover"
               />
+              <div ref={tintRef} aria-hidden="true" className="hero-photo-tint pointer-events-none absolute inset-0" />
               <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-background/85 px-5 py-4 backdrop-blur-md">
                 <span className="text-sm font-medium">Available for opportunities</span>
                 <span className="size-2 rounded-full bg-primary shadow-[0_0_14px_var(--glow)]" />
@@ -181,9 +244,34 @@ function Portfolio() {
           </p>
         </div>
 
-        <div className="mt-16 space-y-20 sm:space-y-28">
+        <div className="mt-16 grid grid-cols-[18px_minmax(0,1fr)] gap-4 sm:grid-cols-[24px_minmax(0,1fr)] sm:gap-8">
+          <aside aria-label="Project scroll progress" className="relative">
+            <div className="sticky top-[30vh] h-72">
+              <div className="absolute left-1/2 top-1 bottom-1 w-px -translate-x-1/2 bg-border">
+                <div ref={progressRef} className="w-full bg-primary shadow-[0_0_12px_var(--glow)] transition-[height] duration-500" />
+              </div>
+              <div className="relative flex h-full flex-col items-center justify-between">
+                {projects.map((project, index) => (
+                  <a
+                    key={project.title}
+                    href={`#project-${index + 1}`}
+                    aria-label={`Jump to ${project.title}`}
+                    aria-current={index === activeProject ? "step" : undefined}
+                    className={`z-10 size-3 rounded-full border transition-all duration-300 ${index <= activeProject ? "dot-active" : "dot-idle"}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </aside>
+          <div className="space-y-20 sm:space-y-28">
           {projects.map((project, index) => (
-            <article key={project.title} className="group grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
+            <article
+              key={project.title}
+              id={`project-${index + 1}`}
+              data-project-index={index}
+              ref={(element) => { projectRefs.current[index] = element; }}
+              className="group grid scroll-mt-28 items-center gap-8 lg:grid-cols-12 lg:gap-12"
+            >
               <div className={`lg:col-span-8 ${index % 2 ? "lg:order-2" : ""}`}>
                 <div className="aspect-[16/10] overflow-hidden border border-border bg-card">
                   <img
@@ -223,6 +311,7 @@ function Portfolio() {
               </div>
             </article>
           ))}
+          </div>
         </div>
       </section>
 
