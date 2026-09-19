@@ -5,4 +5,4 @@
 - [x] Remove Flash Card and Quote App.
 - [x] Add GitHub links to the six matching projects.
 - [x] Keep generated covers for Payment Field and Temporary Chat.
-- [ ] Verify desktop and mobile presentation.
+- [x] Verify desktop and mobile presentation.
