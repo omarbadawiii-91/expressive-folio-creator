@@ -81,10 +81,22 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  body {
+    overflow-x: hidden;
+  }
+
   ::selection {
     background: var(--primary);
     color: var(--primary-foreground);
   }
+}
+
+@utility portfolio-grid {
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
 }
 
 /* Monospace section label, e.g. "01 / EXPERIENCE" */
