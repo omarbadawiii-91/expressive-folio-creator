@@ -154,3 +154,32 @@
     transform: translateY(0);
   }
 }
+
+@utility achievement-card {
+  background: color-mix(in oklab, var(--card) 45%, transparent);
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    border-color: color-mix(in oklab, var(--primary) 45%, transparent);
+    background: var(--card);
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .hero-photo,
+  .hero-photo-tint,
+  .achievement-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
