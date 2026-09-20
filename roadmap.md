@@ -6,3 +6,5 @@
 - [x] Add GitHub links to the six matching projects.
 - [x] Keep generated covers for Payment Field and Temporary Chat.
 - [x] Verify desktop and mobile presentation.
+
+- [x] Add scroll-linked portrait color and project progress effects.
