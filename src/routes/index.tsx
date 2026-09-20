@@ -3,13 +3,20 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowDown,
   ArrowUpRight,
+  Award,
+  Check,
   Github,
+  Linkedin,
   Mail,
   MapPin,
+  ScanLine,
+  SearchCheck,
+  Send,
+  ShieldCheck,
   Smartphone,
 } from "lucide-react";
 
-import heroPhoto from "@/assets/hero-photo.jpg.asset.json";
+import heroPhoto from "@/assets/omar-mobile-developer.jpg";
 import bookeCover from "@/assets/covers-uploaded/booke-cover.png.asset.json";
 import leoClinicCover from "@/assets/covers-uploaded/leoclinic-cover.png.asset.json";
 import marketoCover from "@/assets/covers-uploaded/marketo-cover.png.asset.json";
@@ -106,6 +113,36 @@ const projects = [
   },
 ];
 
+const learningArchive = [
+  "Mobile App Development using Flutter — ITI · Sep 2025 · 120hrs",
+  "Gen AI — ITI · Dec 2025",
+  "UI/UX Design — National Telecommunication Institute (NTI)",
+  "Deep Dive into Clean Architecture in Flutter [Arabic] — Udemy",
+  "Flutter Advanced: Bloc and MVVM Pattern [Arabic] — Udemy",
+  "Flutter Payment Integration: Stripe, PayPal & More [Arabic] — Udemy",
+  "Complete Flutter & Dart Development Course [Arabic] — Udemy",
+  "The C++ Learning Guide — Udemy",
+  "Building LLM Applications with Prompt Engineering",
+  "AI for All: From Basics to GenAI Practice — NVIDIA",
+  "Freelancing Basics — Mahara-Tech",
+  "Python 101 — Satr/Tuwaiq Academy",
+  "Python Programming Basics — Mahara-Tech AI Academy",
+  "Data Structures & Algorithms",
+  "Object Oriented Programming",
+  "C++ (Level 1 & 2)",
+  "Problem Solving",
+  "Git & GitHub",
+];
+
+const achievements = [
+  { title: "Mobile App Development · ITI", source: "ITI", topics: ["Dart", "OOP", "Flutter", "API Integration", "Bloc", "Firebase", "Git"] },
+  { title: "Deep Dive into Clean Architecture in Flutter", source: "Udemy", topics: ["Dependency Injection", "Reactive Programming", "SOLID", "Maintainable Flutter"] },
+  { title: "Flutter Payment Integration", source: "Udemy", topics: ["Stripe", "PayPal", "Payment Systems", "Gateway Selection"] },
+  { title: "Flutter Advanced: Bloc and MVVM", source: "Udemy", topics: ["Bloc", "State Management", "MVVM", "Design Patterns"] },
+  { title: "Gen AI", source: "ITI", topics: ["Python", "LangChain", "Prompt Engineering"] },
+  { title: "HR Member · ICPC Tanta Community", source: "ICPC", topics: ["Problem Solving", "Teamwork"] },
+];
+
 function Portfolio() {
   const heroRef = useRef<HTMLElement>(null);
   const photoRef = useRef<HTMLImageElement>(null);
@@ -167,6 +204,23 @@ function Portfolio() {
     progress.style.height = `${(activeProject / (projects.length - 1)) * 100}%`;
   }, [activeProject]);
 
+  useEffect(() => {
+    const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.12 },
+    );
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl">
@@ -219,8 +273,8 @@ function Portfolio() {
             <div className="relative aspect-[4/5] overflow-hidden bg-muted">
               <img
                 ref={photoRef}
-                src={heroPhoto.url}
-                alt="Portrait of Omar Badawy"
+                src={heroPhoto}
+                alt="Omar Mohamed Badawy, mobile app developer"
                 className="hero-photo h-full w-full object-cover"
               />
               <div ref={tintRef} aria-hidden="true" className="hero-photo-tint pointer-events-none absolute inset-0" />
@@ -246,7 +300,7 @@ function Portfolio() {
 
         <div className="mt-16 grid grid-cols-[18px_minmax(0,1fr)] gap-4 sm:grid-cols-[24px_minmax(0,1fr)] sm:gap-8">
           <aside aria-label="Project scroll progress" className="relative">
-            <div className="sticky top-[30vh] h-72">
+            <div className="sticky top-[23vh] h-[54vh] max-h-[520px] min-h-80">
               <div className="absolute left-1/2 top-1 bottom-1 w-px -translate-x-1/2 bg-border">
                 <div ref={progressRef} className="w-full bg-primary shadow-[0_0_12px_var(--glow)] transition-[height] duration-500" />
               </div>
@@ -270,7 +324,8 @@ function Portfolio() {
               id={`project-${index + 1}`}
               data-project-index={index}
               ref={(element) => { projectRefs.current[index] = element; }}
-              className="group grid scroll-mt-28 items-center gap-8 lg:grid-cols-12 lg:gap-12"
+              data-reveal
+              className="reveal group grid scroll-mt-28 items-center gap-8 lg:grid-cols-12 lg:gap-12"
             >
               <div className={`lg:col-span-8 ${index % 2 ? "lg:order-2" : ""}`}>
                 <div className="aspect-[16/10] overflow-hidden border border-border bg-card">
@@ -315,43 +370,128 @@ function Portfolio() {
         </div>
       </section>
 
-      <section id="about" className="border-y border-border bg-card/40">
-        <div className="mx-auto grid max-w-6xl gap-12 px-5 py-24 sm:px-8 lg:grid-cols-2 lg:py-28">
-          <div>
-            <p className="section-label">02 / About</p>
-            <h2 className="mt-5 text-4xl font-semibold leading-tight sm:text-5xl">
-              Code with purpose.<br />Design with empathy.
-            </h2>
-          </div>
-          <div className="space-y-6 text-base leading-8 text-muted-foreground">
-            <p>
-              I build cross-platform mobile applications with Flutter and Dart, turning product ideas into fast,
-              clear, and maintainable experiences.
-            </p>
-            <p>
-              My work combines clean architecture, API integration, Firebase, and careful interface design—from
-              the first screen to the final interaction.
-            </p>
-            <div className="flex flex-wrap gap-x-6 gap-y-3 pt-3 font-mono text-xs text-foreground">
-              <span>Flutter</span><span>Dart</span><span>Firebase</span><span>REST APIs</span><span>Git</span>
+      <section className="border-y border-border bg-card/30">
+        <div className="mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32">
+          <div data-reveal className="reveal grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+            <div>
+              <p className="section-label">02 / My own product</p>
+              <h2 className="mt-5 text-4xl font-semibold leading-tight sm:text-6xl">Scanova.<br /><span className="text-primary">Scan with confidence.</span></h2>
+              <p className="mt-6 max-w-md leading-7 text-muted-foreground">
+                I created Scanova to make suspicious QR codes and links easier to understand before people open them.
+                It turns complex security signals into one clear, actionable report.
+              </p>
+            </div>
+            <div className="overflow-hidden border border-border bg-background">
+              <img src={scanovaCover.url} alt="Scanova mobile security product" className="aspect-[16/9] w-full object-cover transition-transform duration-700 hover:scale-[1.025]" />
+              <div className="grid sm:grid-cols-3">
+                {[
+                  { icon: ScanLine, title: "Scan", copy: "Use the camera, gallery, or a pasted link to check a source." },
+                  { icon: SearchCheck, title: "Analyze", copy: "Classify every result as safe, warning, or dangerous." },
+                  { icon: ShieldCheck, title: "Protect", copy: "Open verified links in an isolated five-minute sandbox." },
+                ].map((step, index) => (
+                  <div key={step.title} className="border-t border-border p-6 sm:border-l sm:first:border-l-0">
+                    <div className="flex items-center justify-between font-mono text-[10px] text-primary">
+                      <span>0{index + 1}</span><step.icon className="size-4" />
+                    </div>
+                    <h3 className="mt-8 text-xl font-semibold">{step.title}</h3>
+                    <p className="mt-3 text-sm leading-6 text-muted-foreground">{step.copy}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <footer className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
-        <p className="section-label">03 / Contact</p>
-        <div className="mt-5 flex flex-col justify-between gap-10 sm:flex-row sm:items-end">
+      <section id="about" className="mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32">
+        <div data-reveal className="reveal grid gap-12 lg:grid-cols-2 lg:gap-20">
           <div>
-            <h2 className="text-4xl font-semibold sm:text-6xl">Let&apos;s build something good.</h2>
-            <a className="mt-6 inline-flex items-center gap-2 text-primary hover:underline" href="mailto:omarbadawiii91@gmail.com">
-              <Mail className="size-4" /> omarbadawiii91@gmail.com
-            </a>
+            <p className="section-label">03 / Always learning</p>
+            <h2 className="mt-5 text-4xl font-semibold leading-tight sm:text-6xl">The roadmap is part of the product.</h2>
+            <p className="mt-7 max-w-lg leading-8 text-muted-foreground">
+              I keep a close eye on the fundamentals: architecture, accessibility, performance, and the habits that make a codebase a better place to return to.
+            </p>
           </div>
-          <div className="space-y-3 text-sm text-muted-foreground sm:text-right">
-            <p className="flex items-center gap-2 sm:justify-end"><MapPin className="size-4" /> Cairo, Egypt</p>
-            <p>© 2026 Omar Badawy</p>
+          <div className="border-t border-border">
+            {[
+              ["Now", "Deepening Flutter architecture", "Clean boundaries, scalable state, and better testing habits."],
+              ["Next", "Building stronger product instincts", "Learning to ask sharper questions before writing the first widget."],
+              ["Always", "Shipping, reviewing, refining", "The loop that keeps the work honest and the learning practical."],
+            ].map(([label, title, copy]) => (
+              <div key={label} className="grid gap-3 border-b border-border py-7 sm:grid-cols-[72px_1fr]">
+                <span className="font-mono text-[10px] uppercase text-primary">{label}</span>
+                <div><h3 className="text-lg font-semibold">{title}</h3><p className="mt-2 text-sm leading-6 text-muted-foreground">{copy}</p></div>
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-card/30">
+        <div className="mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32">
+          <div data-reveal className="reveal flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+            <div><p className="section-label">04 / Learning achievements</p><h2 className="mt-5 text-4xl font-semibold sm:text-6xl">Proof of steady progress.</h2></div>
+            <p className="font-mono text-[10px] uppercase text-muted-foreground">18 certificates & courses</p>
+          </div>
+          <div className="mt-14 grid gap-3 md:grid-cols-2">
+            {achievements.map((achievement, index) => (
+              <article data-reveal key={achievement.title} className="reveal achievement-card border border-border p-5 sm:p-6">
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="max-w-md text-sm font-semibold leading-6">{achievement.title}</h3>
+                  <span className="rounded-full border border-primary/40 px-2 py-1 font-mono text-[9px] uppercase text-primary">{achievement.source}</span>
+                </div>
+                <div className="mt-6 flex flex-wrap gap-x-5 gap-y-3 font-mono text-[9px] uppercase text-muted-foreground">
+                  {achievement.topics.map((topic) => <span key={topic}>{topic}</span>)}
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="mt-16 flex items-center justify-between border-t border-border pt-8">
+            <p className="section-label">Learning archive</p>
+            <Award className="size-5 text-primary" />
+          </div>
+          <div className="mt-6 grid gap-3 md:grid-cols-2">
+            {learningArchive.map((course, index) => (
+              <div key={course} className="group flex min-h-16 items-center gap-4 border border-border px-5 py-4 transition-colors hover:border-primary/40 hover:bg-secondary/60">
+                <span className="font-mono text-[10px] text-primary">{String(index + 1).padStart(2, "0")}</span>
+                <p className="text-sm leading-6 text-muted-foreground transition-colors group-hover:text-foreground">{course}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32">
+        <div data-reveal className="reveal grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
+          <div>
+            <p className="section-label">05 / Contact</p>
+            <h2 className="mt-6 text-5xl font-semibold leading-[1.05] sm:text-7xl">Have a real problem <span className="text-primary">worth solving?</span></h2>
+            <p className="mt-8 max-w-lg leading-8 text-muted-foreground">Tell me what you&apos;re building, what&apos;s getting in the way, or simply where you&apos;re headed. I&apos;ll get back to you with a thoughtful answer.</p>
+            <div className="mt-9 space-y-4 text-sm">
+              <a className="flex items-center gap-3 transition-colors hover:text-primary" href="mailto:omarbadawiii91@gmail.com"><Mail className="size-4 text-primary" /> omarbadawiii91@gmail.com <ArrowUpRight className="size-3" /></a>
+              <p className="flex items-center gap-3 text-muted-foreground"><MapPin className="size-4 text-primary" /> Cairo, Egypt · Open for junior roles, internships, and freelance work</p>
+              <div className="flex gap-3 pt-2">
+                <Button asChild size="icon" variant="outline"><a href="https://github.com/omarbadawiii-91" target="_blank" rel="noreferrer" aria-label="Omar on GitHub"><Github /></a></Button>
+                <Button asChild size="icon" variant="outline"><a href="https://www.linkedin.com/in/omar-mohamed-badawy/" target="_blank" rel="noreferrer" aria-label="Omar on LinkedIn"><Linkedin /></a></Button>
+              </div>
+            </div>
+          </div>
+          <form className="border border-border p-6 sm:p-8" action="mailto:omarbadawiii91@gmail.com" method="post" encType="text/plain">
+            <div className="grid gap-7 sm:grid-cols-2">
+              <label className="space-y-3 font-mono text-[10px] uppercase text-muted-foreground">Your name<input name="name" required placeholder="How should I call you?" className="w-full border-0 border-b border-border bg-transparent py-3 font-sans text-sm normal-case text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label>
+              <label className="space-y-3 font-mono text-[10px] uppercase text-muted-foreground">Email<input name="email" type="email" required placeholder="you@company.com" className="w-full border-0 border-b border-border bg-transparent py-3 font-sans text-sm normal-case text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label>
+            </div>
+            <label className="mt-8 block space-y-3 font-mono text-[10px] uppercase text-muted-foreground">What are you working on?<textarea name="message" required rows={5} placeholder="A few details go a long way..." className="w-full resize-none border-0 border-b border-border bg-transparent py-3 font-sans text-sm normal-case text-foreground outline-none transition-colors placeholder:text-muted-foreground/60 focus:border-primary" /></label>
+            <Button type="submit" size="lg" className="mt-8">Send message <Send /></Button>
+          </form>
+        </div>
+      </section>
+
+      <footer className="border-t border-border">
+        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-5 px-5 py-8 text-xs sm:flex-row sm:items-center sm:px-8">
+          <p className="font-semibold">Omar Mohamed Badawy</p>
+          <p className="font-mono text-[9px] uppercase text-muted-foreground">Built with Flutter thinking & passion · Cairo, Egypt</p>
+          <div className="flex items-center gap-4 text-muted-foreground"><a href="https://github.com/omarbadawiii-91" aria-label="GitHub"><Github className="size-4" /></a><a href="https://www.linkedin.com/in/omar-mohamed-badawy/" aria-label="LinkedIn"><Linkedin className="size-4" /></a><span>© 2026</span></div>
         </div>
       </footer>
     </main>
