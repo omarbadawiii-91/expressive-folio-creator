@@ -4,7 +4,6 @@ import {
   ArrowDown,
   ArrowUpRight,
   Award,
-  Check,
   Github,
   Linkedin,
   Mail,
@@ -186,7 +185,7 @@ function Portfolio() {
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (!visible) return;
-        const index = Number((visible.target as HTMLElement).dataset.projectIndex);
+        const index = Number((visible.target as HTMLElement).dataset["projectIndex"]);
         if (!Number.isNaN(index)) setActiveProject(index);
       },
       { rootMargin: "-28% 0px -38% 0px", threshold: [0.15, 0.35, 0.6] },
@@ -233,10 +232,10 @@ function Portfolio() {
               Work
             </a>
             <a className="text-sm text-muted-foreground transition-colors hover:text-foreground" href="#about">
-              About
+              Learning
             </a>
             <Button asChild size="sm">
-              <a href="mailto:omarbadawiii91@gmail.com">Let&apos;s talk</a>
+              <a href="#contact">Let&apos;s talk</a>
             </Button>
           </nav>
         </div>
