@@ -108,24 +108,56 @@
   color: var(--color-primary);
 }
 
-/* Scroll-linked hero photo: grayscale -> color + accent duotone.
-   Driven by the --photo-progress custom property (0..1). */
-@utility hero-photo {
-  --photo-progress: 0;
-  filter: grayscale(calc((1 - var(--photo-progress)) * 100%))
-    saturate(calc(0.9 + var(--photo-progress) * 0.35));
-  transition: filter 0.15s linear;
+@utility engineer-glow {
+  text-shadow:
+    0 0 8px var(--glow),
+    0 0 18px var(--glow);
 }
 
-@utility hero-photo-tint {
-  background: linear-gradient(
-    160deg,
-    var(--color-primary),
-    oklch(0.55 0.2 285)
-  );
-  mix-blend-mode: color;
-  opacity: calc(var(--photo-progress) * 0.45);
-  transition: opacity 0.15s linear;
+@utility hero-typewriter {
+  width: 16ch;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--primary);
+  animation:
+    hero-type 1.8s steps(16, end) 0.25s both,
+    hero-caret 0.75s step-end 0.25s 4;
+}
+
+@utility flutter-mark {
+  fill: transparent;
+  stroke: currentColor;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 520;
+  stroke-dashoffset: 520;
+  animation: flutter-draw 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+@utility animate-portrait-enter {
+  opacity: 0;
+  transform: translateY(28px);
+  animation: portrait-enter 1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+}
+
+@keyframes hero-type {
+  from { width: 0; }
+  to { width: 16ch; }
+}
+
+@keyframes hero-caret {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: var(--primary); }
+}
+
+@keyframes flutter-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes portrait-enter {
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Project timeline dots */
@@ -175,11 +207,22 @@
   }
 
   .reveal,
-  .hero-photo,
-  .hero-photo-tint,
-  .achievement-card {
+  .achievement-card,
+  .animate-portrait-enter {
     opacity: 1;
     transform: none;
     transition: none;
+    animation: none;
+  }
+
+  .hero-typewriter {
+    width: 16ch;
+    border-right: 0;
+    animation: none;
+  }
+
+  .flutter-mark {
+    stroke-dashoffset: 0;
+    animation: none;
   }
 }
