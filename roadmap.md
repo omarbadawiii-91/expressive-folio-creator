@@ -16,3 +16,5 @@
 - [x] Extend the project timeline through every project and keep completed points glowing.
 - [x] Add the full contact section and LinkedIn profile.
 - [x] Match the supplied scroll and reveal animation direction across desktop and mobile.
+
+- [x] Refine the top intro with the natural portrait, animated mobile title, Flutter mark, updated identity, and LinkedIn action.

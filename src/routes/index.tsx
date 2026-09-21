@@ -15,7 +15,7 @@ import {
   Smartphone,
 } from "lucide-react";
 
-import heroPhoto from "@/assets/omar-mobile-developer.jpg";
+import heroPhoto from "@/assets/omar-portrait-natural.jfif.asset.json";
 import bookeCover from "@/assets/covers-uploaded/booke-cover.png.asset.json";
 import leoClinicCover from "@/assets/covers-uploaded/leoclinic-cover.png.asset.json";
 import marketoCover from "@/assets/covers-uploaded/marketo-cover.png.asset.json";
@@ -143,40 +143,9 @@ const achievements = [
 ];
 
 function Portfolio() {
-  const heroRef = useRef<HTMLElement>(null);
-  const photoRef = useRef<HTMLImageElement>(null);
-  const tintRef = useRef<HTMLDivElement>(null);
   const projectRefs = useRef<Array<HTMLElement | null>>([]);
   const progressRef = useRef<HTMLDivElement>(null);
   const [activeProject, setActiveProject] = useState(0);
-
-  useEffect(() => {
-    let animationFrame = 0;
-
-    const updatePhoto = () => {
-      const hero = heroRef.current;
-      const photo = photoRef.current;
-      const tint = tintRef.current;
-      if (!hero || !photo || !tint) return;
-
-      const bounds = hero.getBoundingClientRect();
-      const progress = Math.min(1, Math.max(0, -bounds.top / (bounds.height * 0.62)));
-      photo.style.setProperty("--photo-progress", String(progress));
-      tint.style.setProperty("--photo-progress", String(progress));
-    };
-
-    const onScroll = () => {
-      cancelAnimationFrame(animationFrame);
-      animationFrame = requestAnimationFrame(updatePhoto);
-    };
-
-    updatePhoto();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      cancelAnimationFrame(animationFrame);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -223,15 +192,18 @@ function Portfolio() {
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
-          <a href="#top" className="font-mono text-sm font-semibold text-foreground">
-            OMAR<span className="text-primary">.</span>
+        <div className="mx-auto flex h-20 max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
+          <a href="#top" className="min-w-0">
+            <span className="block truncate text-sm font-semibold text-foreground sm:text-base">Omar Mohamed Badawy</span>
+            <span className="mt-1 flex items-center gap-1.5 font-mono text-[9px] uppercase text-primary sm:text-[10px]">
+              <Smartphone className="size-3" /> Mobile App <span className="engineer-glow">Engineer</span>
+            </span>
           </a>
-          <nav aria-label="Main navigation" className="flex items-center gap-5 sm:gap-8">
-            <a className="text-sm text-muted-foreground transition-colors hover:text-foreground" href="#work">
+          <nav aria-label="Main navigation" className="flex shrink-0 items-center gap-4 sm:gap-8">
+            <a className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:block" href="#work">
               Work
             </a>
-            <a className="text-sm text-muted-foreground transition-colors hover:text-foreground" href="#about">
+            <a className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground md:block" href="#about">
               Learning
             </a>
             <Button asChild size="sm">
@@ -241,11 +213,31 @@ function Portfolio() {
         </div>
       </header>
 
-      <section ref={heroRef} id="top" className="relative flex min-h-[92vh] items-center border-b border-border pt-16">
+      <section id="top" aria-label="Omar Mohamed Badawy portrait" className="relative isolate flex min-h-[86vh] items-end overflow-hidden border-b border-border pt-20">
         <div className="pointer-events-none absolute inset-0 portfolio-grid opacity-40" />
-        <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:py-28">
-          <div>
-            <p className="section-label">Flutter developer · Cairo, Egypt</p>
+        <div aria-hidden="true" className="absolute inset-x-0 top-[24%] z-0 flex justify-center overflow-hidden px-3">
+          <p className="hero-typewriter font-mono text-[clamp(2.25rem,10vw,8.5rem)] font-semibold leading-none text-primary/20">Mobile Developer</p>
+        </div>
+        <svg aria-hidden="true" viewBox="0 0 160 200" className="flutter-mark absolute left-[9%] top-[25%] z-0 hidden h-48 w-40 text-primary/60 sm:block lg:left-[16%] lg:h-64 lg:w-52">
+          <path d="M118 10 24 103l30 30L148 40 118 10Z" />
+          <path d="m55 133 38-38 55 55-30 30-25-25-18 18-20-20Z" />
+        </svg>
+        <div className="relative z-10 mx-auto flex w-full max-w-6xl justify-center px-5 sm:px-8">
+          <div className="relative w-full max-w-2xl animate-portrait-enter">
+            <img
+              src={heroPhoto.url}
+              alt="Omar Mohamed Badawy, mobile app engineer"
+              className="mx-auto block max-h-[76vh] w-full object-contain object-bottom"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="relative flex min-h-[76vh] items-center border-b border-border">
+        <div className="pointer-events-none absolute inset-0 portfolio-grid opacity-30" />
+        <div className="relative mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 lg:py-28">
+          <div className="max-w-4xl">
+            <p className="section-label flex items-center gap-2"><Smartphone className="size-4" /> Mobile App Engineer · Cairo, Egypt</p>
             <h1 className="mt-6 max-w-3xl text-5xl font-semibold leading-[1.04] sm:text-7xl lg:text-8xl">
               Building mobile products that feel <span className="text-primary">effortless.</span>
             </h1>
@@ -264,23 +256,11 @@ function Portfolio() {
                   <Github /> GitHub
                 </a>
               </Button>
-            </div>
-          </div>
-
-          <div className="relative mx-auto w-full max-w-md lg:justify-self-end">
-            <div className="absolute -inset-5 border border-primary/20" />
-            <div className="relative aspect-[4/5] overflow-hidden bg-muted">
-              <img
-                ref={photoRef}
-                src={heroPhoto}
-                alt="Omar Mohamed Badawy, mobile app developer"
-                className="hero-photo h-full w-full object-cover"
-              />
-              <div ref={tintRef} aria-hidden="true" className="hero-photo-tint pointer-events-none absolute inset-0" />
-              <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-background/85 px-5 py-4 backdrop-blur-md">
-                <span className="text-sm font-medium">Available for opportunities</span>
-                <span className="size-2 rounded-full bg-primary shadow-[0_0_14px_var(--glow)]" />
-              </div>
+              <Button asChild size="icon" variant="outline" className="size-11" title="LinkedIn">
+                <a href="https://www.linkedin.com/in/omar-mohamed-badawy/" target="_blank" rel="noreferrer" aria-label="Omar Mohamed Badawy on LinkedIn">
+                  <Linkedin />
+                </a>
+              </Button>
             </div>
           </div>
         </div>
