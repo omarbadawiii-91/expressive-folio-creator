@@ -185,7 +185,7 @@ function Portfolio() {
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (!visible) return;
-        const index = Number((visible.target as HTMLElement).dataset.projectIndex);
+        const index = Number((visible.target as HTMLElement).dataset["projectIndex"]);
         if (!Number.isNaN(index)) setActiveProject(index);
       },
       { rootMargin: "-28% 0px -38% 0px", threshold: [0.15, 0.35, 0.6] },
