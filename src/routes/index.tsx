@@ -4,7 +4,6 @@ import {
   ArrowDown,
   ArrowUpRight,
   Award,
-  Check,
   Github,
   Linkedin,
   Mail,
@@ -233,10 +232,10 @@ function Portfolio() {
               Work
             </a>
             <a className="text-sm text-muted-foreground transition-colors hover:text-foreground" href="#about">
-              About
+              Learning
             </a>
             <Button asChild size="sm">
-              <a href="mailto:omarbadawiii91@gmail.com">Let&apos;s talk</a>
+              <a href="#contact">Let&apos;s talk</a>
             </Button>
           </nav>
         </div>
