@@ -213,25 +213,32 @@ function Portfolio() {
         </div>
       </header>
 
-      <section id="top" aria-label="Omar Mohamed Badawy portrait" className="relative isolate flex min-h-[86vh] items-end overflow-hidden border-b border-border pt-20">
+      <section id="top" aria-label="Omar Mohamed Badawy portrait" className="relative isolate flex min-h-[92vh] items-end overflow-hidden border-b border-border pt-20">
         <div className="pointer-events-none absolute inset-0 portfolio-grid opacity-40" />
-        <div aria-hidden="true" className="absolute inset-x-0 top-[24%] z-0 flex justify-center overflow-hidden px-3">
-          <p className="hero-typewriter font-mono text-[clamp(2.25rem,10vw,8.5rem)] font-semibold leading-none text-primary/20">Mobile Developer</p>
+        <div aria-hidden="true" className="absolute inset-x-0 top-[22%] z-0 flex flex-col items-center gap-1 overflow-hidden px-2">
+          <span className="hero-outline hero-slide-left whitespace-nowrap text-[clamp(2.6rem,13vw,10rem)] font-extrabold uppercase leading-[0.92] tracking-tight">
+            Mobile App
+          </span>
+          <span className="hero-outline hero-slide-right whitespace-nowrap text-[clamp(2.6rem,13vw,10rem)] font-extrabold uppercase leading-[0.92] tracking-tight">
+            Developer
+          </span>
         </div>
-        <svg aria-hidden="true" viewBox="0 0 160 200" className="flutter-mark absolute left-[3%] top-[32%] z-0 h-28 w-24 text-primary/50 sm:left-[9%] sm:top-[25%] sm:h-48 sm:w-40 lg:left-[16%] lg:h-64 lg:w-52">
-          <path d="M118 10 24 103l30 30L148 40 118 10Z" />
-          <path d="m55 133 38-38 55 55-30 30-25-25-18 18-20-20Z" />
-        </svg>
         <div className="relative z-10 mx-auto flex w-full max-w-6xl justify-center px-5 sm:px-8">
           <div className="relative w-full max-w-2xl animate-portrait-enter">
+            <div
+              aria-hidden="true"
+              className="hero-glow-shape pointer-events-none absolute left-1/2 top-[6%] -z-10 size-[58%] -translate-x-1/2 rotate-45 rounded-[18%]"
+            />
             <img
               src={heroPhoto.url}
               alt="Omar Mohamed Badawy, mobile app engineer"
               className="mx-auto block max-h-[76vh] w-full object-contain object-bottom"
             />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent" />
           </div>
         </div>
       </section>
+
 
       <section className="relative flex min-h-[76vh] items-center border-b border-border">
         <div className="pointer-events-none absolute inset-0 portfolio-grid opacity-30" />
