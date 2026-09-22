@@ -212,21 +212,14 @@
 
   .reveal,
   .achievement-card,
-  .animate-portrait-enter {
+  .animate-portrait-enter,
+  .hero-slide-left,
+  .hero-slide-right,
+  .hero-glow-shape {
     opacity: 1;
     transform: none;
     transition: none;
     animation: none;
   }
-
-  .hero-typewriter {
-    width: 16ch;
-    border-right: 0;
-    animation: none;
-  }
-
-  .flutter-mark {
-    stroke-dashoffset: 0;
-    animation: none;
-  }
 }
+
