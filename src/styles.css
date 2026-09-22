@@ -114,6 +114,30 @@
     0 0 18px var(--glow);
 }
 
+@utility hero-canvas {
+  background:
+    radial-gradient(60% 55% at 50% 42%, oklch(0.24 0.03 250) 0%, oklch(0.13 0.02 255) 55%, oklch(0.09 0.015 255) 100%);
+}
+
+@utility hero-shape {
+  background: #22d3ee;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  opacity: 0;
+  animation: hero-shape-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+}
+
+@utility hero-shape-bloom {
+  background: #22d3ee;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  filter: blur(42px);
+  opacity: 0;
+  animation: hero-bloom-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+}
+
+@keyframes hero-bloom-in {
+  to { opacity: 0.55; }
+}
+
 @utility hero-outline {
   color: transparent;
   -webkit-text-stroke: 2px oklch(0.88 0.13 195);
