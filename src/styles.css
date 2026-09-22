@@ -114,51 +114,55 @@
     0 0 18px var(--glow);
 }
 
-@utility hero-typewriter {
-  width: 16ch;
-  max-width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 2px solid var(--primary);
-  animation:
-    hero-type 1.8s steps(16, end) 0.25s both,
-    hero-caret 0.75s step-end 0.25s 4;
+@utility hero-outline {
+  color: transparent;
+  -webkit-text-stroke: 2px oklch(0.88 0.13 195);
+  text-shadow:
+    0 0 18px color-mix(in oklab, var(--primary) 45%, transparent),
+    0 0 48px color-mix(in oklab, var(--primary) 25%, transparent);
 }
 
-@utility flutter-mark {
-  fill: transparent;
-  stroke: currentColor;
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 520;
-  stroke-dashoffset: 520;
-  animation: flutter-draw 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+@utility hero-slide-left {
+  opacity: 0;
+  transform: translateX(-110%);
+  animation: hero-slide-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+@utility hero-slide-right {
+  opacity: 0;
+  transform: translateX(110%);
+  animation: hero-slide-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.28s forwards;
+}
+
+@utility hero-glow-shape {
+  background: linear-gradient(
+    150deg,
+    color-mix(in oklab, var(--primary) 85%, transparent),
+    color-mix(in oklab, var(--primary) 20%, transparent)
+  );
+  filter: blur(6px);
+  opacity: 0;
+  animation: hero-shape-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
 }
 
 @utility animate-portrait-enter {
   opacity: 0;
-  transform: translateY(28px);
-  animation: portrait-enter 1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+  transform: scale(0.95);
+  animation: portrait-enter 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.75s forwards;
 }
 
-@keyframes hero-type {
-  from { width: 0; }
-  to { width: 16ch; }
+@keyframes hero-slide-in {
+  to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes hero-caret {
-  0%, 100% { border-color: transparent; }
-  50% { border-color: var(--primary); }
-}
-
-@keyframes flutter-draw {
-  to { stroke-dashoffset: 0; }
+@keyframes hero-shape-in {
+  to { opacity: 0.75; }
 }
 
 @keyframes portrait-enter {
-  to { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: scale(1); }
 }
+
 
 /* Project timeline dots */
 @utility dot-idle {
@@ -208,21 +212,14 @@
 
   .reveal,
   .achievement-card,
-  .animate-portrait-enter {
+  .animate-portrait-enter,
+  .hero-slide-left,
+  .hero-slide-right,
+  .hero-glow-shape {
     opacity: 1;
     transform: none;
     transition: none;
     animation: none;
   }
-
-  .hero-typewriter {
-    width: 16ch;
-    border-right: 0;
-    animation: none;
-  }
-
-  .flutter-mark {
-    stroke-dashoffset: 0;
-    animation: none;
-  }
 }
+
