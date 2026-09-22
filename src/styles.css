@@ -229,7 +229,8 @@
   .animate-portrait-enter,
   .hero-slide-left,
   .hero-slide-right,
-  .hero-glow-shape {
+  .hero-shape,
+  .hero-shape-bloom {
     opacity: 1;
     transform: none;
     transition: none;
