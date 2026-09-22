@@ -28,13 +28,13 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Omar Badawy — Flutter Developer" },
+      { title: "Omar Mohamed Badawy — Mobile App Engineer" },
       {
         name: "description",
         content:
-          "Portfolio of Omar Badawy, a Flutter developer building polished mobile experiences.",
+          "Portfolio of Omar Mohamed Badawy, a mobile app engineer building polished Flutter experiences.",
       },
-      { property: "og:title", content: "Omar Badawy — Flutter Developer" },
+      { property: "og:title", content: "Omar Mohamed Badawy — Mobile App Engineer" },
       {
         property: "og:description",
         content: "Selected Flutter apps and mobile product work by Omar Badawy.",
@@ -218,7 +218,7 @@ function Portfolio() {
         <div aria-hidden="true" className="absolute inset-x-0 top-[24%] z-0 flex justify-center overflow-hidden px-3">
           <p className="hero-typewriter font-mono text-[clamp(2.25rem,10vw,8.5rem)] font-semibold leading-none text-primary/20">Mobile Developer</p>
         </div>
-        <svg aria-hidden="true" viewBox="0 0 160 200" className="flutter-mark absolute left-[9%] top-[25%] z-0 hidden h-48 w-40 text-primary/60 sm:block lg:left-[16%] lg:h-64 lg:w-52">
+        <svg aria-hidden="true" viewBox="0 0 160 200" className="flutter-mark absolute left-[3%] top-[32%] z-0 h-28 w-24 text-primary/50 sm:left-[9%] sm:top-[25%] sm:h-48 sm:w-40 lg:left-[16%] lg:h-64 lg:w-52">
           <path d="M118 10 24 103l30 30L148 40 118 10Z" />
           <path d="m55 133 38-38 55 55-30 30-25-25-18 18-20-20Z" />
         </svg>
