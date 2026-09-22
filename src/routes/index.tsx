@@ -213,9 +213,9 @@ function Portfolio() {
         </div>
       </header>
 
-      <section id="top" aria-label="Omar Mohamed Badawy portrait" className="relative isolate flex min-h-[92vh] items-end overflow-hidden border-b border-border pt-20">
+      <section id="top" aria-label="Omar Mohamed Badawy portrait" className="relative isolate flex min-h-[92vh] items-center justify-center overflow-hidden border-b border-border pt-20">
         <div className="pointer-events-none absolute inset-0 portfolio-grid opacity-40" />
-        <div aria-hidden="true" className="absolute inset-x-0 top-[22%] z-0 flex flex-col items-center gap-1 overflow-hidden px-2">
+        <div aria-hidden="true" className="absolute inset-x-0 top-1/2 z-0 flex -translate-y-1/2 flex-col items-center gap-1 overflow-hidden px-2">
           <span className="hero-outline hero-slide-left whitespace-nowrap text-[clamp(2.6rem,13vw,10rem)] font-extrabold uppercase leading-[0.92] tracking-tight">
             Mobile App
           </span>
@@ -223,21 +223,21 @@ function Portfolio() {
             Developer
           </span>
         </div>
-        <div className="relative z-10 mx-auto flex w-full max-w-6xl justify-center px-5 sm:px-8">
-          <div className="relative w-full max-w-2xl animate-portrait-enter">
+        <div className="relative z-10 flex w-full justify-center px-5 sm:px-8">
+          <div className="relative w-full max-w-md animate-portrait-enter sm:max-w-lg">
             <div
               aria-hidden="true"
-              className="hero-glow-shape pointer-events-none absolute left-1/2 top-[6%] -z-10 size-[58%] -translate-x-1/2 rotate-45 rounded-[18%]"
+              className="hero-glow-shape pointer-events-none absolute left-1/2 top-[4%] -z-10 size-[62%] -translate-x-1/2 rotate-45 rounded-[18%]"
             />
             <img
               src={heroPhoto.url}
               alt="Omar Mohamed Badawy, mobile app engineer"
-              className="mx-auto block max-h-[76vh] w-full object-contain object-bottom"
+              className="mx-auto block max-h-[70vh] w-full object-contain object-bottom [mask-image:radial-gradient(75%_75%_at_50%_45%,#000_58%,transparent_100%)]"
             />
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent" />
           </div>
         </div>
       </section>
+
 
 
       <section className="relative flex min-h-[76vh] items-center border-b border-border">
