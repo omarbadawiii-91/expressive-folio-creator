@@ -232,7 +232,7 @@ function Portfolio() {
             <img
               src={heroPhoto.url}
               alt="Omar Mohamed Badawy, mobile app engineer"
-              className="mx-auto block max-h-[70vh] w-full object-contain object-bottom [mask-image:radial-gradient(75%_75%_at_50%_45%,#000_58%,transparent_100%)]"
+              className="mx-auto block max-h-[70vh] w-full object-contain object-bottom [mask-image:radial-gradient(68%_68%_at_50%_42%,#000_35%,transparent_88%)]"
             />
           </div>
         </div>
