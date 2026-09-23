@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 
 import heroPhoto from "@/assets/omar-mobile-developer-portrait.png.asset.json";
+import heroComposite from "@/assets/omar-mobile-developer.jpg";
 import bookeCover from "@/assets/covers-uploaded/booke-cover.png.asset.json";
 import leoClinicCover from "@/assets/covers-uploaded/leoclinic-cover.png.asset.json";
 import marketoCover from "@/assets/covers-uploaded/marketo-cover.png.asset.json";
@@ -242,77 +243,90 @@ function Portfolio() {
         </div>
       </header>
 
-      <section id="top" className="px-3 pt-24 pb-6 sm:px-6 sm:pt-28">
-        <div className="hero-canvas hero-card relative isolate flex min-h-[86vh] flex-col overflow-hidden rounded-[2rem] border border-border px-5 py-10 sm:px-10 sm:py-12">
-          <img
-            aria-hidden="true"
-            src="/flutter-hero-bg.jpg"
-            alt=""
-            className="hero-bg-image"
-          />
-          <div aria-hidden="true" className="hero-glow pointer-events-none absolute left-1/2 top-[34%] -z-10 h-[52%] w-[70%] max-w-3xl -translate-x-1/2 rounded-full" />
+      <section
+        id="top"
+        className="hero-canvas relative isolate flex min-h-screen flex-col overflow-hidden px-6 pt-28 pb-10 sm:px-10 sm:pt-32 lg:px-16"
+      >
+        {/* Cyan spotlight glow */}
+        <div
+          aria-hidden="true"
+          className="hero-glow pointer-events-none absolute left-1/2 top-[30%] -z-10 h-[55%] w-[65%] max-w-3xl -translate-x-1/2 rounded-full"
+        />
 
-          <div className="relative z-20 max-w-4xl">
-            <p className="section-label hero-in hero-in-1 flex items-center gap-2">
-              <Smartphone className="size-4" /> Mobile App Engineer · Cairo, Egypt
-            </p>
-            <h1 className="hero-in hero-in-2 mt-6 max-w-4xl text-4xl font-semibold leading-[1.05] sm:text-6xl lg:text-7xl">
-              Building mobile products that feel <span className="text-primary">effortless.</span>
-            </h1>
-          </div>
+        {/* Top label */}
+        <p className="hero-in hero-in-1 flex items-center gap-2 text-sm font-medium text-foreground/80">
+          <Smartphone className="size-4 text-primary" />
+          Hey&nbsp;👋, I&apos;m a Mobile App Engineer
+        </p>
 
+        {/* Huge name — sits behind the portrait */}
+        <div className="relative mt-1 flex flex-1 flex-col">
+          <h1
+            aria-label="Omar Badawy"
+            className="hero-in hero-in-2 hero-name pointer-events-none select-none leading-[0.88] font-black uppercase"
+          >
+            <span className="block">Omar</span>
+            <span className="block">Badawy</span>
+          </h1>
+
+          {/* Portrait — absolutely centered, layered in front of name */}
           <div
             ref={heroPortraitRef}
-            className="hero-parallax hero-portrait relative z-10 mt-10 flex flex-1 items-end justify-center lg:-mt-10"
+            className="hero-parallax hero-portrait absolute inset-x-0 bottom-0 flex items-end justify-center"
           >
             <img
-              src={heroPhoto.url}
+              src={heroComposite}
               alt="Omar Mohamed Badawy, mobile app engineer"
-              className="block h-auto w-full max-w-md object-contain object-bottom [mask-image:linear-gradient(to_bottom,#000_72%,transparent_99%)] sm:max-w-lg lg:max-w-xl"
+              className="block h-auto w-full max-w-xs object-contain object-bottom [mask-image:linear-gradient(to_bottom,#000_70%,transparent_100%)] sm:max-w-sm md:max-w-md lg:max-w-lg"
             />
           </div>
+        </div>
 
-          <div className="relative z-20 mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <div className="hero-in hero-in-3 space-y-2">
-              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">©2025</p>
-              <a className="block text-sm text-muted-foreground transition-colors hover:text-primary" href="mailto:omarbadawiii91@gmail.com">
-                omarbadawiii91@gmail.com
-              </a>
-              <p className="text-sm text-muted-foreground">Cairo, Egypt</p>
-            </div>
-
-            <div className="hero-in hero-in-4 max-w-sm space-y-4 lg:text-right">
-              <p className="text-sm leading-6 text-muted-foreground">
-                I&apos;m Omar Badawy, a Flutter developer focused on thoughtful interfaces,
-                reliable architecture, and experiences people enjoy using.
-              </p>
-              <div className="flex flex-wrap gap-5 text-sm lg:justify-end">
-                <a className="text-foreground transition-colors hover:text-primary" href="https://www.linkedin.com/in/omar-mohamed-badawy/" target="_blank" rel="noreferrer">
-                  LinkedIn
-                </a>
-                <a className="text-foreground transition-colors hover:text-primary" href="https://github.com/omarbadawiii-91" target="_blank" rel="noreferrer">
-                  GitHub
-                </a>
-                <a className="text-foreground transition-colors hover:text-primary" href="#work">
-                  Work
-                </a>
-                <a className="text-foreground transition-colors hover:text-primary" href="#contact">
-                  Contact
-                </a>
-              </div>
-            </div>
+        {/* Bottom bar */}
+        <div className="relative z-20 mt-6 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div className="hero-in hero-in-3 space-y-1.5">
+            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">©2025</p>
+            <a
+              className="block text-sm text-muted-foreground transition-colors hover:text-primary"
+              href="mailto:omarbadawiii91@gmail.com"
+            >
+              omarbadawiii91@gmail.com
+            </a>
+            <p className="text-sm text-muted-foreground">Cairo, Egypt</p>
           </div>
 
-          <a
-            href="#work"
-            aria-label="Scroll to selected work"
-            className="hero-in hero-in-4 absolute right-4 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-center gap-3 text-muted-foreground transition-colors hover:text-primary lg:flex"
-          >
-            <span className="h-16 w-px bg-border" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.3em] [writing-mode:vertical-rl]">Scroll</span>
-            <ArrowDown className="size-3" />
-          </a>
+          <div className="hero-in hero-in-4 max-w-sm space-y-4 lg:text-right">
+            <p className="text-sm leading-6 text-muted-foreground">
+              I&apos;m Omar Badawy, a Flutter developer focused on thoughtful interfaces,
+              reliable architecture, and experiences people enjoy using.
+            </p>
+            <div className="flex flex-wrap gap-5 text-sm lg:justify-end">
+              <a className="text-foreground transition-colors hover:text-primary" href="https://www.linkedin.com/in/omar-mohamed-badawy/" target="_blank" rel="noreferrer">
+                / LinkedIn
+              </a>
+              <a className="text-foreground transition-colors hover:text-primary" href="https://github.com/omarbadawiii-91" target="_blank" rel="noreferrer">
+                / GitHub
+              </a>
+              <a className="text-foreground transition-colors hover:text-primary" href="#work">
+                / Work
+              </a>
+              <a className="text-foreground transition-colors hover:text-primary" href="#contact">
+                / Contact
+              </a>
+            </div>
+          </div>
         </div>
+
+        {/* Scroll indicator */}
+        <a
+          href="#work"
+          aria-label="Scroll to selected work"
+          className="hero-in hero-in-4 absolute right-5 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-center gap-3 text-muted-foreground transition-colors hover:text-primary lg:flex"
+        >
+          <span className="h-16 w-px bg-border" />
+          <span className="font-mono text-[10px] uppercase tracking-[0.3em] [writing-mode:vertical-rl]">Scroll</span>
+          <ArrowDown className="size-3" />
+        </a>
       </section>
 
 
