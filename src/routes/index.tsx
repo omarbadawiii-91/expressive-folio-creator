@@ -189,6 +189,33 @@ function Portfolio() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const portrait = heroPortraitRef.current;
+    if (!portrait) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(max-width: 767px)").matches) return;
+
+    let frame = 0;
+    const onMove = (event: MouseEvent) => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const x = (event.clientX / window.innerWidth - 0.5) * 18;
+        const y = (event.clientY / window.innerHeight - 0.5) * 12;
+        portrait.style.setProperty("--parallax-x", `${x.toFixed(2)}px`);
+        portrait.style.setProperty("--parallax-y", `${y.toFixed(2)}px`);
+      });
+    };
+
+    window.addEventListener("mousemove", onMove);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+
+
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl">
