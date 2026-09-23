@@ -214,26 +214,27 @@ function Portfolio() {
       </header>
 
       <section id="top" aria-label="Omar Mohamed Badawy portrait" className="hero-canvas relative isolate flex min-h-[94vh] items-end justify-center overflow-hidden border-b border-border pt-20">
-        <div aria-hidden="true" className="absolute inset-x-0 top-1/2 z-0 flex -translate-y-1/2 flex-col items-center gap-1 overflow-hidden px-2">
-          <span className="hero-outline hero-slide-left whitespace-nowrap text-[clamp(2.6rem,13vw,10rem)] font-extrabold uppercase leading-[0.92] tracking-tight">
-            Mobile App
-          </span>
-          <span className="hero-outline hero-slide-right whitespace-nowrap text-[clamp(2.6rem,13vw,10rem)] font-extrabold uppercase leading-[0.92] tracking-tight">
-            Developer
-          </span>
-        </div>
-        <div className="relative z-10 flex w-full justify-center">
-          <div className="relative w-full max-w-lg animate-portrait-enter sm:max-w-xl lg:max-w-2xl">
-            <div aria-hidden="true" className="hero-shape-bloom pointer-events-none absolute left-1/2 top-[2%] -z-10 h-[38%] w-[62%] -translate-x-1/2" />
-            <div aria-hidden="true" className="hero-shape pointer-events-none absolute left-1/2 top-[4%] -z-10 h-[32%] w-[54%] -translate-x-1/2" />
+        <div className="relative flex w-full max-w-4xl justify-center">
+          <div aria-hidden="true" className="absolute inset-x-0 top-[16%] z-0 flex flex-col items-center gap-1 overflow-hidden px-2">
+            <span className="hero-outline hero-slide-left whitespace-nowrap text-[clamp(2.6rem,13vw,10rem)] font-extrabold uppercase leading-[0.92] tracking-tight">
+              Mobile App
+            </span>
+            <span className="hero-outline hero-slide-right whitespace-nowrap text-[clamp(2.6rem,13vw,10rem)] font-extrabold uppercase leading-[0.92] tracking-tight">
+              Developer
+            </span>
+          </div>
+          <div className="relative z-10 w-full max-w-lg animate-portrait-enter sm:max-w-xl lg:max-w-2xl">
+            <div aria-hidden="true" className="hero-shape-bloom pointer-events-none absolute left-1/2 top-[1%] -z-10 h-[34%] w-[66%] -translate-x-1/2" />
+            <div aria-hidden="true" className="hero-shape pointer-events-none absolute left-1/2 top-[3%] -z-10 h-[28%] w-[58%] -translate-x-1/2" />
             <img
               src={heroPhoto.url}
               alt="Omar Mohamed Badawy, mobile app engineer"
-              className="mx-auto block max-h-[78vh] w-full object-contain object-bottom [mask-image:linear-gradient(to_bottom,#000_72%,transparent_98%)]"
+              className="mx-auto block max-h-[80vh] w-full object-contain object-bottom [mask-image:linear-gradient(to_bottom,#000_70%,transparent_99%)]"
             />
           </div>
         </div>
       </section>
+
 
 
 
