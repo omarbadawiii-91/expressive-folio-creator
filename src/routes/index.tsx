@@ -244,6 +244,12 @@ function Portfolio() {
 
       <section id="top" className="px-3 pt-24 pb-6 sm:px-6 sm:pt-28">
         <div className="hero-canvas hero-card relative isolate flex min-h-[86vh] flex-col overflow-hidden rounded-[2rem] border border-border px-5 py-10 sm:px-10 sm:py-12">
+          <img
+            aria-hidden="true"
+            src="/flutter-hero-bg.jpg"
+            alt=""
+            className="hero-bg-image"
+          />
           <div aria-hidden="true" className="hero-glow pointer-events-none absolute left-1/2 top-[34%] -z-10 h-[52%] w-[70%] max-w-3xl -translate-x-1/2 rounded-full" />
 
           <div className="relative z-20 max-w-4xl">

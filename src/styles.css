@@ -121,6 +121,20 @@
   animation: hero-fade 0.9s ease-out forwards;
 }
 
+@utility hero-bg-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.13;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+}
+
 @utility hero-card {
   box-shadow: 0 40px 120px -60px oklch(0 0 0 / 80%);
 }
