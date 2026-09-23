@@ -145,6 +145,8 @@ const achievements = [
 function Portfolio() {
   const projectRefs = useRef<Array<HTMLElement | null>>([]);
   const progressRef = useRef<HTMLDivElement>(null);
+  const heroPortraitRef = useRef<HTMLDivElement>(null);
+
   const [activeProject, setActiveProject] = useState(0);
 
   useEffect(() => {
