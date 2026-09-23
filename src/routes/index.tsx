@@ -4,6 +4,7 @@ import {
   ArrowDown,
   ArrowUpRight,
   Award,
+  Briefcase,
   Github,
   Linkedin,
   Mail,
@@ -12,7 +13,6 @@ import {
   SearchCheck,
   Send,
   ShieldCheck,
-  Smartphone,
 } from "lucide-react";
 
 import heroPhoto from "@/assets/omar-mobile-developer-portrait.png.asset.json";
@@ -253,21 +253,9 @@ function Portfolio() {
           className="hero-glow pointer-events-none absolute left-1/2 top-[30%] -z-10 h-[55%] w-[65%] max-w-3xl -translate-x-1/2 rounded-full"
         />
 
-        {/* Top label */}
-        <p className="hero-in hero-in-1 flex items-center gap-2 text-sm font-medium text-foreground/80">
-          <Smartphone className="size-4 text-primary" />
-          Hey&nbsp;👋, I&apos;m a Mobile App Engineer
-        </p>
-
-        {/* Huge name — sits behind the portrait */}
+        {/* Portrait container — full height center */}
         <div className="relative mt-1 flex flex-1 flex-col">
-          <h1
-            aria-label="Omar Badawy"
-            className="hero-in hero-in-2 hero-name pointer-events-none select-none leading-[0.88] font-black uppercase"
-          >
-            <span className="block">Omar</span>
-            <span className="block">Badawy</span>
-          </h1>
+          <h1 className="sr-only">Omar Badawy — Mobile App Engineer</h1>
 
           {/* Portrait — absolutely centered, layered in front of name */}
           <div
@@ -285,7 +273,6 @@ function Portfolio() {
         {/* Bottom bar */}
         <div className="relative z-20 mt-6 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="hero-in hero-in-3 space-y-1.5">
-            <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">©2025</p>
             <a
               className="block text-sm text-muted-foreground transition-colors hover:text-primary"
               href="mailto:omarbadawiii91@gmail.com"
@@ -295,23 +282,37 @@ function Portfolio() {
             <p className="text-sm text-muted-foreground">Cairo, Egypt</p>
           </div>
 
-          <div className="hero-in hero-in-4 max-w-sm space-y-4 lg:text-right">
-            <p className="text-sm leading-6 text-muted-foreground">
+          <div className="hero-in hero-in-4 space-y-4 lg:text-right">
+            <p className="text-sm leading-6 text-muted-foreground max-w-sm lg:ml-auto">
               I&apos;m Omar Badawy, a Flutter developer focused on thoughtful interfaces,
               reliable architecture, and experiences people enjoy using.
             </p>
-            <div className="flex flex-wrap gap-5 text-sm lg:justify-end">
-              <a className="text-foreground transition-colors hover:text-primary" href="https://www.linkedin.com/in/omar-mohamed-badawy/" target="_blank" rel="noreferrer">
-                / LinkedIn
+            <div className="flex flex-wrap gap-2 lg:justify-end">
+              <a
+                href="https://www.linkedin.com/in/omar-mohamed-badawy/"
+                target="_blank"
+                rel="noreferrer"
+                className="hero-tab-link"
+              >
+                <Linkedin className="size-3.5" />
+                LinkedIn
               </a>
-              <a className="text-foreground transition-colors hover:text-primary" href="https://github.com/omarbadawiii-91" target="_blank" rel="noreferrer">
-                / GitHub
+              <a
+                href="https://github.com/omarbadawiii-91"
+                target="_blank"
+                rel="noreferrer"
+                className="hero-tab-link"
+              >
+                <Github className="size-3.5" />
+                GitHub
               </a>
-              <a className="text-foreground transition-colors hover:text-primary" href="#work">
-                / Work
+              <a href="#work" className="hero-tab-link">
+                <Briefcase className="size-3.5" />
+                Work
               </a>
-              <a className="text-foreground transition-colors hover:text-primary" href="#contact">
-                / Contact
+              <a href="#contact" className="hero-tab-link">
+                <Mail className="size-3.5" />
+                Contact
               </a>
             </div>
           </div>

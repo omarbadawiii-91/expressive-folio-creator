@@ -125,12 +125,42 @@
   box-shadow: 0 40px 120px -60px oklch(0 0 0 / 80%);
 }
 
-/* Massive full-width name text — Bruno Simon style */
-@utility hero-name {
-  font-size: clamp(4rem, 18vw, 18rem);
-  line-height: 0.88;
-  color: var(--color-foreground);
-  letter-spacing: -0.02em;
+/* Glowing pill tab links in the hero bottom bar */
+@utility hero-tab-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 9999px;
+  border: 1px solid oklch(1 0 0 / 12%);
+  background: oklch(1 0 0 / 4%);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-muted-foreground);
+  text-decoration: none;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+
+  &:hover {
+    color: var(--color-primary);
+    border-color: oklch(0.8 0.15 210 / 55%);
+    background: oklch(0.8 0.15 210 / 8%);
+    box-shadow:
+      0 0 10px 2px oklch(0.8 0.15 210 / 25%),
+      inset 0 0 8px 0 oklch(0.8 0.15 210 / 10%);
+  }
+
+  &:active {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    background: oklch(0.8 0.15 210 / 15%);
+    box-shadow:
+      0 0 18px 4px oklch(0.8 0.15 210 / 40%),
+      inset 0 0 12px 0 oklch(0.8 0.15 210 / 18%);
+  }
 }
 
 @utility hero-glow {
