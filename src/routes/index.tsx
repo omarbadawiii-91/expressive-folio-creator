@@ -15,7 +15,7 @@ import {
   Smartphone,
 } from "lucide-react";
 
-import heroPhoto from "@/assets/omar-cutout.png.asset.json";
+import heroPhoto from "@/assets/omar-mobile-developer-portrait.png.asset.json";
 import bookeCover from "@/assets/covers-uploaded/booke-cover.png.asset.json";
 import leoClinicCover from "@/assets/covers-uploaded/leoclinic-cover.png.asset.json";
 import marketoCover from "@/assets/covers-uploaded/marketo-cover.png.asset.json";
