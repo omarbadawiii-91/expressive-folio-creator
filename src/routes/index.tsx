@@ -145,6 +145,8 @@ const achievements = [
 function Portfolio() {
   const projectRefs = useRef<Array<HTMLElement | null>>([]);
   const progressRef = useRef<HTMLDivElement>(null);
+  const heroPortraitRef = useRef<HTMLDivElement>(null);
+
   const [activeProject, setActiveProject] = useState(0);
 
   useEffect(() => {
@@ -189,6 +191,33 @@ function Portfolio() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const portrait = heroPortraitRef.current;
+    if (!portrait) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.matchMedia("(max-width: 767px)").matches) return;
+
+    let frame = 0;
+    const onMove = (event: MouseEvent) => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(() => {
+        frame = 0;
+        const x = (event.clientX / window.innerWidth - 0.5) * 18;
+        const y = (event.clientY / window.innerHeight - 0.5) * 12;
+        portrait.style.setProperty("--parallax-x", `${x.toFixed(2)}px`);
+        portrait.style.setProperty("--parallax-y", `${y.toFixed(2)}px`);
+      });
+    };
+
+    window.addEventListener("mousemove", onMove);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+
+
   return (
     <main className="min-h-screen overflow-hidden bg-background text-foreground">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl">
@@ -213,64 +242,73 @@ function Portfolio() {
         </div>
       </header>
 
-      <section id="top" aria-label="Omar Mohamed Badawy portrait" className="hero-canvas relative isolate flex min-h-[94vh] items-end justify-center overflow-hidden border-b border-border pt-20">
-        <div className="relative flex w-full max-w-4xl justify-center">
-          <div aria-hidden="true" className="absolute inset-x-0 top-[16%] z-0 flex flex-col items-center gap-1 overflow-hidden px-2">
-            <span className="hero-outline hero-slide-left whitespace-nowrap text-[clamp(2.6rem,13vw,10rem)] font-extrabold uppercase leading-[0.92] tracking-tight">
-              Mobile App
-            </span>
-            <span className="hero-outline hero-slide-right whitespace-nowrap text-[clamp(2.6rem,13vw,10rem)] font-extrabold uppercase leading-[0.92] tracking-tight">
-              Developer
-            </span>
+      <section id="top" className="px-3 pt-24 pb-6 sm:px-6 sm:pt-28">
+        <div className="hero-canvas hero-card relative isolate flex min-h-[86vh] flex-col overflow-hidden rounded-[2rem] border border-border px-5 py-10 sm:px-10 sm:py-12">
+          <div aria-hidden="true" className="hero-glow pointer-events-none absolute left-1/2 top-[34%] -z-10 h-[52%] w-[70%] max-w-3xl -translate-x-1/2 rounded-full" />
+
+          <div className="relative z-20 max-w-4xl">
+            <p className="section-label hero-in hero-in-1 flex items-center gap-2">
+              <Smartphone className="size-4" /> Mobile App Engineer · Cairo, Egypt
+            </p>
+            <h1 className="hero-in hero-in-2 mt-6 max-w-4xl text-4xl font-semibold leading-[1.05] sm:text-6xl lg:text-7xl">
+              Building mobile products that feel <span className="text-primary">effortless.</span>
+            </h1>
           </div>
-          <div className="relative z-10 w-full max-w-lg animate-portrait-enter sm:max-w-xl lg:max-w-2xl">
-            <div aria-hidden="true" className="hero-shape-bloom pointer-events-none absolute left-1/2 top-[1%] -z-10 h-[34%] w-[66%] -translate-x-1/2" />
-            <div aria-hidden="true" className="hero-shape pointer-events-none absolute left-1/2 top-[3%] -z-10 h-[28%] w-[58%] -translate-x-1/2" />
+
+          <div
+            ref={heroPortraitRef}
+            className="hero-parallax hero-portrait relative z-10 mt-10 flex flex-1 items-end justify-center lg:-mt-10"
+          >
             <img
               src={heroPhoto.url}
               alt="Omar Mohamed Badawy, mobile app engineer"
-              className="mx-auto block max-h-[80vh] w-full object-contain object-bottom [mask-image:linear-gradient(to_bottom,#000_70%,transparent_99%)]"
+              className="block h-auto w-full max-w-md object-contain object-bottom [mask-image:linear-gradient(to_bottom,#000_72%,transparent_99%)] sm:max-w-lg lg:max-w-xl"
             />
           </div>
-        </div>
-      </section>
 
+          <div className="relative z-20 mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+            <div className="hero-in hero-in-3 space-y-2">
+              <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-muted-foreground">©2025</p>
+              <a className="block text-sm text-muted-foreground transition-colors hover:text-primary" href="mailto:omarbadawiii91@gmail.com">
+                omarbadawiii91@gmail.com
+              </a>
+              <p className="text-sm text-muted-foreground">Cairo, Egypt</p>
+            </div>
 
-
-
-
-      <section className="relative flex min-h-[76vh] items-center border-b border-border">
-        <div className="pointer-events-none absolute inset-0 portfolio-grid opacity-30" />
-        <div className="relative mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 lg:py-28">
-          <div className="max-w-4xl">
-            <p className="section-label flex items-center gap-2"><Smartphone className="size-4" /> Mobile App Engineer · Cairo, Egypt</p>
-            <h1 className="mt-6 max-w-3xl text-5xl font-semibold leading-[1.04] sm:text-7xl lg:text-8xl">
-              Building mobile products that feel <span className="text-primary">effortless.</span>
-            </h1>
-            <p className="mt-7 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
-              I&apos;m Omar Badawy, a Flutter developer focused on thoughtful interfaces,
-              reliable architecture, and experiences people enjoy using.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <a href="#work">
-                  View selected work <ArrowDown />
+            <div className="hero-in hero-in-4 max-w-sm space-y-4 lg:text-right">
+              <p className="text-sm leading-6 text-muted-foreground">
+                I&apos;m Omar Badawy, a Flutter developer focused on thoughtful interfaces,
+                reliable architecture, and experiences people enjoy using.
+              </p>
+              <div className="flex flex-wrap gap-5 text-sm lg:justify-end">
+                <a className="text-foreground transition-colors hover:text-primary" href="https://www.linkedin.com/in/omar-mohamed-badawy/" target="_blank" rel="noreferrer">
+                  LinkedIn
                 </a>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <a href="https://github.com/omarbadawiii-91" target="_blank" rel="noreferrer">
-                  <Github /> GitHub
+                <a className="text-foreground transition-colors hover:text-primary" href="https://github.com/omarbadawiii-91" target="_blank" rel="noreferrer">
+                  GitHub
                 </a>
-              </Button>
-              <Button asChild size="icon" variant="outline" className="size-11" title="LinkedIn">
-                <a href="https://www.linkedin.com/in/omar-mohamed-badawy/" target="_blank" rel="noreferrer" aria-label="Omar Mohamed Badawy on LinkedIn">
-                  <Linkedin />
+                <a className="text-foreground transition-colors hover:text-primary" href="#work">
+                  Work
                 </a>
-              </Button>
+                <a className="text-foreground transition-colors hover:text-primary" href="#contact">
+                  Contact
+                </a>
+              </div>
             </div>
           </div>
+
+          <a
+            href="#work"
+            aria-label="Scroll to selected work"
+            className="hero-in hero-in-4 absolute right-4 top-1/2 z-20 hidden -translate-y-1/2 flex-col items-center gap-3 text-muted-foreground transition-colors hover:text-primary lg:flex"
+          >
+            <span className="h-16 w-px bg-border" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.3em] [writing-mode:vertical-rl]">Scroll</span>
+            <ArrowDown className="size-3" />
+          </a>
         </div>
       </section>
+
 
       <section id="work" className="mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32">
         <div className="flex flex-col justify-between gap-6 border-b border-border pb-10 sm:flex-row sm:items-end">
