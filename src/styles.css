@@ -208,6 +208,14 @@
   animation: hero-portrait-in 1s cubic-bezier(0.16, 1, 0.3, 1) 0.95s forwards;
 }
 
+@utility hero-logo {
+  opacity: 0;
+  filter:
+    drop-shadow(0 0 10px var(--glow))
+    drop-shadow(0 0 28px var(--glow));
+  animation: hero-logo-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+}
+
 @utility hero-parallax {
   --parallax-x: 0px;
   --parallax-y: 0px;
@@ -229,6 +237,11 @@
 @keyframes hero-portrait-in {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes hero-logo-in {
+  from { opacity: 0; transform: translateX(-50%) scale(0.94); }
+  to { opacity: 1; transform: translateX(-50%) scale(1); }
 }
 
 @keyframes hero-glow-pulse {
@@ -289,6 +302,7 @@
   .hero-canvas,
   .hero-glow,
   .hero-in,
+  .hero-logo,
   .hero-portrait {
     opacity: 1;
     transform: none;
