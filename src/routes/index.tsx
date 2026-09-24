@@ -144,17 +144,93 @@ const achievements = [
   { title: "HR Member · ICPC Tanta Community", source: "ICPC", topics: ["Problem Solving", "Teamwork"] },
 ];
 
+/**
+ * Official Flutter logo — two diagonal parallelograms with fold shadow.
+ * Uses SVG (natively transparent) + feGaussianBlur neon glow filter.
+ * Coordinates derived from the official Flutter brand SVG (viewBox 0 0 66 75.3).
+ */
 function FlutterLogo({ className }: { className?: string }) {
   return (
-    <img
-      src="/flutter-neon.jpg"
-      alt=""
-      aria-hidden="true"
+    <svg
       className={className}
-      style={{ mixBlendMode: 'screen' }}
-    />
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="-8 -8 82 92"   /* expanded viewBox so glow doesn't clip */
+      aria-hidden="true"
+      style={{ overflow: 'visible' }}
+    >
+      <defs>
+        {/* Outer ambient glow — wide, diffuse */}
+        <filter id="fl-glow-outer" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+          <feColorMatrix
+            in="blur" type="matrix"
+            values="0 0 0 0 0   0 0.85 0 0 0.9   0 0 1 0 1   0 0 0 18 -5"
+            result="cyan-glow"
+          />
+          <feMerge>
+            <feMergeNode in="cyan-glow" />
+            <feMergeNode in="cyan-glow" />
+          </feMerge>
+        </filter>
+
+        {/* Edge glow — tight, bright */}
+        <filter id="fl-glow-edge" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur" />
+          <feColorMatrix
+            in="blur" type="matrix"
+            values="0 0 0 0 0   0 0.9 0 0 1   0 0 1 0 1   0 0 0 25 -8"
+            result="edge"
+          />
+          <feMerge>
+            <feMergeNode in="edge" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      {/* ── Ambient outer glow layer (drawn first, behind everything) ── */}
+      <g filter="url(#fl-glow-outer)" opacity="0.6">
+        <polygon fill="#00e5ff" points="37.7,0 0.6,36.7 13.3,49.4 50.4,13.3" />
+        <polygon fill="#00c8e0" points="13.3,49.4 26.0,62.1 62.7,25.4 50.0,12.7" />
+        <polygon fill="#00e5ff" points="26.0,62.1 38.7,74.8 62.9,50.8 50.2,38.1" />
+      </g>
+
+      {/* ── Upper wing: large cyan parallelogram ── */}
+      <polygon
+        filter="url(#fl-glow-edge)"
+        fill="#1a7fa6"
+        stroke="#00e5ff"
+        strokeWidth="0.7"
+        points="37.7,0 0.6,36.7 13.3,49.4 50.4,13.3"
+      />
+
+      {/* ── Lower wing left section (same angle, below upper wing) ── */}
+      <polygon
+        filter="url(#fl-glow-edge)"
+        fill="#145f7d"
+        stroke="#00bcd4"
+        strokeWidth="0.7"
+        points="13.3,49.4 26.0,62.1 62.7,25.4 50.0,12.7"
+      />
+
+      {/* ── Fold / overlap shadow (dark navy — creates the 3-D depth) ── */}
+      <polygon
+        fill="#062535"
+        points="26.0,62.1 37.7,50.8 46.5,59.6 34.8,70.9"
+      />
+
+      {/* ── Lower wing right section (bright cyan edge highlight) ── */}
+      <polygon
+        filter="url(#fl-glow-edge)"
+        fill="#1a7fa6"
+        stroke="#00e5ff"
+        strokeWidth="0.7"
+        points="26.0,62.1 38.7,74.8 62.9,50.8 50.2,38.1"
+      />
+    </svg>
   );
 }
+
 
 function Portfolio() {
   const projectRefs = useRef<Array<HTMLElement | null>>([]);
@@ -279,14 +355,13 @@ function Portfolio() {
             <span className="hero-bg-line">DEVELOPER</span>
           </div>
 
-          {/* === Layer 2: Flutter neon logo — centered behind head as halo === */}
-          {/* mix-blend-mode:screen on the <img> removes the dark background pixels */}
+          {/* === Layer 2: Flutter SVG logo — natively transparent, centered as head halo === */}
           <div
             aria-hidden="true"
-            className="hero-portrait pointer-events-none select-none absolute top-[-4%] left-1/2 z-0 -translate-x-[42%]"
+            className="hero-portrait pointer-events-none select-none absolute top-[4%] left-1/2 z-[1] -translate-x-1/2"
             style={{ animationDelay: '0.75s' }}
           >
-            <FlutterLogo className="w-64 h-64 sm:w-80 sm:h-80 md:w-[26rem] md:h-[26rem] lg:w-[30rem] lg:h-[30rem] opacity-90" />
+            <FlutterLogo className="w-72 h-72 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem]" />
           </div>
 
           {/* === Layer 3: Person cutout — front, parallax === */}
