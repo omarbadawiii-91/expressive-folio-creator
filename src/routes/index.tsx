@@ -292,11 +292,15 @@ function Portfolio() {
             <span className="hero-bg-line">DEVELOPER</span>
           </div>
 
-          {/* === Layer 2: Flutter SVG logo — natively transparent, centered as head halo === */}
+          {/* === Layer 2: Flutter logo — fades out at bottom via mask so it doesn't peek below shoulders === */}
           <div
             aria-hidden="true"
             className="hero-portrait pointer-events-none select-none absolute top-[4%] left-1/2 z-[1] -translate-x-1/2"
-            style={{ animationDelay: '0.75s' }}
+            style={{
+              animationDelay: '0.75s',
+              maskImage: 'linear-gradient(to bottom, black 40%, transparent 72%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 72%)',
+            }}
           >
             <FlutterLogo className="w-72 h-72 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem]" />
           </div>
