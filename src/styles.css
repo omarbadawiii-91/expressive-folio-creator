@@ -121,19 +121,23 @@
   animation: hero-fade 0.9s ease-out forwards;
 }
 
-/* Big outlined background text — "MOBILE APP" / "DEVELOPER" */
+/* Big neon-outlined background text — "MOBILE APP" / "DEVELOPER" */
 @utility hero-bg-line {
   display: block;
   font-size: clamp(2.8rem, 11vw, 8rem);
   font-weight: 900;
-  color: transparent;
-  -webkit-text-stroke: 1.5px oklch(1 0 0 / 18%);
+  color: oklch(0.22 0.06 220);           /* dark teal fill — like the photo */
+  -webkit-text-stroke: 1.5px #00e5ff;    /* bright cyan neon outline */
   letter-spacing: 0.04em;
   line-height: 1.05;
   text-transform: uppercase;
   font-family: var(--font-sans);
   text-align: center;
   width: 100%;
+  filter:
+    drop-shadow(0 0 6px #00e5ff)
+    drop-shadow(0 0 14px rgba(0, 229, 255, 0.6))
+    drop-shadow(0 0 30px rgba(0, 180, 220, 0.3));
 }
 
 @utility hero-card {
