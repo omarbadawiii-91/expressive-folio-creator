@@ -144,6 +144,26 @@ const achievements = [
   { title: "HR Member · ICPC Tanta Community", source: "ICPC", topics: ["Problem Solving", "Teamwork"] },
 ];
 
+function FlutterLogo({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 66 75.3"
+      aria-hidden="true"
+    >
+      {/* Top arrow — light cyan */}
+      <polygon fill="#54C5F8" points="37.3,0 0.6,36.7 12.5,48.5 61,0" />
+      {/* Upper-middle arrow — cyan */}
+      <polygon fill="#54C5F8" points="12.5,48.5 24.5,60.5 61,24 49,12" />
+      {/* Lower-middle arrow — sky blue */}
+      <polygon fill="#29B6F6" points="24.5,60.5 36.5,72.8 61,48.3 49,36.3" />
+      {/* Bottom tip — dark navy blue */}
+      <polygon fill="#01579B" points="36.5,72.8 41,75.3 50,75.3 61,64.5 56.5,60" />
+    </svg>
+  );
+}
+
 function Portfolio() {
   const projectRefs = useRef<Array<HTMLElement | null>>([]);
   const progressRef = useRef<HTMLDivElement>(null);
@@ -258,27 +278,44 @@ function Portfolio() {
         <div className="relative mt-1 flex flex-1 flex-col">
           <h1 className="sr-only">Omar Badawy — Mobile App Engineer</h1>
 
-          {/* Portrait — absolutely centered, layered in front of name */}
+          {/* === Layer 1: Big outlined background text === */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none select-none absolute inset-0 z-0 flex flex-col items-center justify-center"
+          >
+            <span className="hero-bg-line">MOBILE APP</span>
+            <span className="hero-bg-line">DEVELOPER</span>
+          </div>
+
+          {/* === Layer 2: Flutter logo — upper right, behind person === */}
+          <div
+            aria-hidden="true"
+            className="hero-portrait pointer-events-none select-none absolute top-[5%] right-[10%] z-0"
+            style={{ animationDelay: '0.75s' }}
+          >
+            <FlutterLogo className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 drop-shadow-[0_0_28px_rgba(84,197,248,0.95)]" />
+          </div>
+
+          {/* === Layer 2b: Cyan spotlight glow behind person head === */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute top-[6%] left-1/2 z-0 h-48 w-48 -translate-x-1/2 rounded-full sm:h-64 sm:w-64"
+            style={{
+              background: 'radial-gradient(circle, oklch(0.85 0.2 195 / 55%) 0%, transparent 70%)',
+              filter: 'blur(28px)',
+            }}
+          />
+
+          {/* === Layer 3: Person cutout — front, parallax === */}
           <div
             ref={heroPortraitRef}
-            className="hero-parallax hero-portrait absolute inset-x-0 bottom-0 flex items-end justify-center"
+            className="hero-parallax hero-portrait absolute inset-x-0 bottom-0 z-10 flex items-end justify-center"
           >
-            {/* Composite wrapper: Flutter bg behind, person cutout in front */}
-            <div className="relative block h-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
-              {/* Flutter logo background layer */}
-              <img
-                src="/flutter-bg.jpg"
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 h-full w-full object-contain opacity-80 [mask-image:linear-gradient(to_bottom,#000_60%,transparent_100%)]"
-              />
-              {/* Person cutout on top */}
-              <img
-                src={heroCutout.url}
-                alt="Omar Mohamed Badawy, mobile app engineer"
-                className="relative block h-auto w-full object-contain object-bottom [mask-image:linear-gradient(to_bottom,#000_70%,transparent_100%)]"
-              />
-            </div>
+            <img
+              src={heroCutout.url}
+              alt="Omar Mohamed Badawy, mobile app engineer"
+              className="block h-auto w-full max-w-xs object-contain object-bottom [mask-image:linear-gradient(to_bottom,#000_70%,transparent_100%)] sm:max-w-sm md:max-w-md lg:max-w-lg"
+            />
           </div>
         </div>
 
