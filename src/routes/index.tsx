@@ -144,51 +144,19 @@ const achievements = [
   { title: "HR Member · ICPC Tanta Community", source: "ICPC", topics: ["Problem Solving", "Teamwork"] },
 ];
 
-/**
- * Official Flutter logo — exact two-parallelogram geometry with fold shadow.
- * SVG is natively transparent. Colors match the official dark-teal brand image.
- * Geometry: two 45° diagonal parallelograms (upper large, lower smaller) joined
- * at the lower-left corner of the upper wing, with a dark fold-shadow triangle
- * and a thin cyan highlight strip along the lower wing's leading edge.
- */
+/** Flutter logo image — white bg removed via mix-blend-mode:multiply */
 function FlutterLogo({ className }: { className?: string }) {
   return (
-    <svg
-      className={className}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 60 68"
+    <img
+      src="/flutter-logo.jpg"
+      alt=""
       aria-hidden="true"
-      style={{ overflow: 'visible', filter: 'drop-shadow(0 0 18px rgba(0,200,218,0.55)) drop-shadow(0 0 6px rgba(0,200,218,0.8))' }}
-    >
-      {/* ── Upper wing: large 45° diagonal parallelogram, dark teal ── */}
-      {/* Points: top-right → left → bottom-left → right-bottom */}
-      <polygon
-        fill="#0d6a7e"
-        points="38,2 2,38 14,50 50,14"
-      />
-
-      {/* ── Lower wing: smaller parallelogram, medium teal ── */}
-      {/* Top-left corner (14,50) is shared with upper wing's bottom-left */}
-      {/* Top-right corner (42,22) sits exactly on upper wing's right edge */}
-      <polygon
-        fill="#1495b0"
-        points="14,50 26,62 54,34 42,22"
-      />
-
-      {/* ── Fold shadow: dark triangle at the wing junction (3-D depth effect) ── */}
-      <polygon
-        fill="#052030"
-        points="14,50 42,22 28,36"
-      />
-
-      {/* ── Cyan highlight strip along the lower wing's leading (top-right) edge ── */}
-      <polygon
-        fill="#00c8da"
-        points="42,22 54,34 52,36 40,24"
-      />
-    </svg>
+      className={className}
+      style={{ mixBlendMode: 'multiply' }}
+    />
   );
 }
+
 
 
 function Portfolio() {
