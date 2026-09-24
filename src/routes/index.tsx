@@ -279,24 +279,15 @@ function Portfolio() {
             <span className="hero-bg-line">DEVELOPER</span>
           </div>
 
-          {/* === Layer 2: Flutter logo — upper right, behind person === */}
+          {/* === Layer 2: Flutter neon logo — centered behind head as halo === */}
+          {/* mix-blend-mode:screen on the <img> removes the dark background pixels */}
           <div
             aria-hidden="true"
-            className="hero-portrait pointer-events-none select-none absolute top-[5%] right-[10%] z-0"
+            className="hero-portrait pointer-events-none select-none absolute top-[-4%] left-1/2 z-0 -translate-x-[42%]"
             style={{ animationDelay: '0.75s' }}
           >
-            <FlutterLogo className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 drop-shadow-[0_0_28px_rgba(84,197,248,0.95)]" />
+            <FlutterLogo className="w-64 h-64 sm:w-80 sm:h-80 md:w-[26rem] md:h-[26rem] lg:w-[30rem] lg:h-[30rem] opacity-90" />
           </div>
-
-          {/* === Layer 2b: Cyan spotlight glow behind person head === */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute top-[6%] left-1/2 z-0 h-48 w-48 -translate-x-1/2 rounded-full sm:h-64 sm:w-64"
-            style={{
-              background: 'radial-gradient(circle, oklch(0.85 0.2 195 / 55%) 0%, transparent 70%)',
-              filter: 'blur(28px)',
-            }}
-          />
 
           {/* === Layer 3: Person cutout — front, parallax === */}
           <div
