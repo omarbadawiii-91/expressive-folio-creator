@@ -13,6 +13,7 @@ import {
   SearchCheck,
   Send,
   ShieldCheck,
+  Smartphone,
 } from "lucide-react";
 
 import heroPhoto from "@/assets/omar-mobile-developer-portrait.png.asset.json";
