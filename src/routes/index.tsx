@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 
 import heroPhoto from "@/assets/omar-mobile-developer-portrait.png.asset.json";
-import heroComposite from "@/assets/omar-mobile-developer.jpg";
+import heroCutout from "@/assets/omar-cutout.png.asset.json";
 import bookeCover from "@/assets/covers-uploaded/booke-cover.png.asset.json";
 import leoClinicCover from "@/assets/covers-uploaded/leoclinic-cover.png.asset.json";
 import marketoCover from "@/assets/covers-uploaded/marketo-cover.png.asset.json";
@@ -262,11 +262,22 @@ function Portfolio() {
             ref={heroPortraitRef}
             className="hero-parallax hero-portrait absolute inset-x-0 bottom-0 flex items-end justify-center"
           >
-            <img
-              src={heroComposite}
-              alt="Omar Mohamed Badawy, mobile app engineer"
-              className="block h-auto w-full max-w-xs object-contain object-bottom [mask-image:linear-gradient(to_bottom,#000_70%,transparent_100%)] sm:max-w-sm md:max-w-md lg:max-w-lg"
-            />
+            {/* Composite wrapper: Flutter bg behind, person cutout in front */}
+            <div className="relative block h-auto w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
+              {/* Flutter logo background layer */}
+              <img
+                src="/flutter-bg.jpg"
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 h-full w-full object-contain opacity-80 [mask-image:linear-gradient(to_bottom,#000_60%,transparent_100%)]"
+              />
+              {/* Person cutout on top */}
+              <img
+                src={heroCutout.url}
+                alt="Omar Mohamed Badawy, mobile app engineer"
+                className="relative block h-auto w-full object-contain object-bottom [mask-image:linear-gradient(to_bottom,#000_70%,transparent_100%)]"
+              />
+            </div>
           </div>
         </div>
 
