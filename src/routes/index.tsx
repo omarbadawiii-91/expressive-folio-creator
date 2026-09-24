@@ -18,6 +18,7 @@ import {
 
 import heroPhoto from "@/assets/omar-mobile-developer-portrait.png.asset.json";
 import heroCutout from "@/assets/omar-cutout.png.asset.json";
+import flutterLogo from "@/assets/flutter-logo-transparent.png.asset.json";
 import bookeCover from "@/assets/covers-uploaded/booke-cover.png.asset.json";
 import leoClinicCover from "@/assets/covers-uploaded/leoclinic-cover.png.asset.json";
 import marketoCover from "@/assets/covers-uploaded/marketo-cover.png.asset.json";
@@ -154,15 +155,13 @@ const achievements = [
   { title: "HR Member · ICPC Tanta Community", source: "ICPC", topics: ["Problem Solving", "Teamwork"] },
 ];
 
-/** Flutter logo image — white bg removed via mix-blend-mode:multiply */
 function FlutterLogo({ className }: { className?: string }) {
   return (
     <img
-      src="/flutter-logo.jpg"
+      src={flutterLogo.url}
       alt=""
       aria-hidden="true"
       className={className}
-      style={{ mixBlendMode: 'multiply' }}
     />
   );
 }
@@ -292,13 +291,12 @@ function Portfolio() {
             <span className="hero-bg-line">DEVELOPER</span>
           </div>
 
-          {/* === Layer 2: Flutter SVG logo — natively transparent, centered as head halo === */}
+          {/* === Layer 2: Official Flutter logo — transparent and centered behind Omar === */}
           <div
             aria-hidden="true"
-            className="hero-portrait pointer-events-none select-none absolute top-[4%] left-1/2 z-[1] -translate-x-1/2"
-            style={{ animationDelay: '0.75s' }}
+            className="hero-logo pointer-events-none absolute bottom-[9%] left-1/2 z-[1] -translate-x-1/2 select-none"
           >
-            <FlutterLogo className="w-72 h-72 sm:w-96 sm:h-96 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem]" />
+            <FlutterLogo className="h-auto w-52 sm:w-64 md:w-72 lg:w-80" />
           </div>
 
           {/* === Layer 3: Person cutout — front, parallax === */}
