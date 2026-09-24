@@ -145,87 +145,46 @@ const achievements = [
 ];
 
 /**
- * Official Flutter logo — two diagonal parallelograms with fold shadow.
- * Uses SVG (natively transparent) + feGaussianBlur neon glow filter.
- * Coordinates derived from the official Flutter brand SVG (viewBox 0 0 66 75.3).
+ * Official Flutter logo — exact two-parallelogram geometry with fold shadow.
+ * SVG is natively transparent. Colors match the official dark-teal brand image.
+ * Geometry: two 45° diagonal parallelograms (upper large, lower smaller) joined
+ * at the lower-left corner of the upper wing, with a dark fold-shadow triangle
+ * and a thin cyan highlight strip along the lower wing's leading edge.
  */
 function FlutterLogo({ className }: { className?: string }) {
   return (
     <svg
       className={className}
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="-8 -8 82 92"   /* expanded viewBox so glow doesn't clip */
+      viewBox="0 0 60 68"
       aria-hidden="true"
-      style={{ overflow: 'visible' }}
+      style={{ overflow: 'visible', filter: 'drop-shadow(0 0 18px rgba(0,200,218,0.55)) drop-shadow(0 0 6px rgba(0,200,218,0.8))' }}
     >
-      <defs>
-        {/* Outer ambient glow — wide, diffuse */}
-        <filter id="fl-glow-outer" x="-80%" y="-80%" width="260%" height="260%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
-          <feColorMatrix
-            in="blur" type="matrix"
-            values="0 0 0 0 0   0 0.85 0 0 0.9   0 0 1 0 1   0 0 0 18 -5"
-            result="cyan-glow"
-          />
-          <feMerge>
-            <feMergeNode in="cyan-glow" />
-            <feMergeNode in="cyan-glow" />
-          </feMerge>
-        </filter>
-
-        {/* Edge glow — tight, bright */}
-        <filter id="fl-glow-edge" x="-40%" y="-40%" width="180%" height="180%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur" />
-          <feColorMatrix
-            in="blur" type="matrix"
-            values="0 0 0 0 0   0 0.9 0 0 1   0 0 1 0 1   0 0 0 25 -8"
-            result="edge"
-          />
-          <feMerge>
-            <feMergeNode in="edge" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-
-      {/* ── Ambient outer glow layer (drawn first, behind everything) ── */}
-      <g filter="url(#fl-glow-outer)" opacity="0.6">
-        <polygon fill="#00e5ff" points="37.7,0 0.6,36.7 13.3,49.4 50.4,13.3" />
-        <polygon fill="#00c8e0" points="13.3,49.4 26.0,62.1 62.7,25.4 50.0,12.7" />
-        <polygon fill="#00e5ff" points="26.0,62.1 38.7,74.8 62.9,50.8 50.2,38.1" />
-      </g>
-
-      {/* ── Upper wing: large cyan parallelogram ── */}
+      {/* ── Upper wing: large 45° diagonal parallelogram, dark teal ── */}
+      {/* Points: top-right → left → bottom-left → right-bottom */}
       <polygon
-        filter="url(#fl-glow-edge)"
-        fill="#1a7fa6"
-        stroke="#00e5ff"
-        strokeWidth="0.7"
-        points="37.7,0 0.6,36.7 13.3,49.4 50.4,13.3"
+        fill="#0d6a7e"
+        points="38,2 2,38 14,50 50,14"
       />
 
-      {/* ── Lower wing left section (same angle, below upper wing) ── */}
+      {/* ── Lower wing: smaller parallelogram, medium teal ── */}
+      {/* Top-left corner (14,50) is shared with upper wing's bottom-left */}
+      {/* Top-right corner (42,22) sits exactly on upper wing's right edge */}
       <polygon
-        filter="url(#fl-glow-edge)"
-        fill="#145f7d"
-        stroke="#00bcd4"
-        strokeWidth="0.7"
-        points="13.3,49.4 26.0,62.1 62.7,25.4 50.0,12.7"
+        fill="#1495b0"
+        points="14,50 26,62 54,34 42,22"
       />
 
-      {/* ── Fold / overlap shadow (dark navy — creates the 3-D depth) ── */}
+      {/* ── Fold shadow: dark triangle at the wing junction (3-D depth effect) ── */}
       <polygon
-        fill="#062535"
-        points="26.0,62.1 37.7,50.8 46.5,59.6 34.8,70.9"
+        fill="#052030"
+        points="14,50 42,22 28,36"
       />
 
-      {/* ── Lower wing right section (bright cyan edge highlight) ── */}
+      {/* ── Cyan highlight strip along the lower wing's leading (top-right) edge ── */}
       <polygon
-        filter="url(#fl-glow-edge)"
-        fill="#1a7fa6"
-        stroke="#00e5ff"
-        strokeWidth="0.7"
-        points="26.0,62.1 38.7,74.8 62.9,50.8 50.2,38.1"
+        fill="#00c8da"
+        points="42,22 54,34 52,36 40,24"
       />
     </svg>
   );
