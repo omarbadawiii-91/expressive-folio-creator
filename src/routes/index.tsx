@@ -25,6 +25,7 @@ import newsCover from "@/assets/covers-uploaded/newscloud-cover.png.asset.json";
 import scanovaCover from "@/assets/covers-uploaded/scanova-cover.png.asset.json";
 import chatCover from "@/assets/covers/chat.jpg";
 import paymentCover from "@/assets/covers/payment.jpg";
+import todoCover from "@/assets/covers/todo.jpg";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
@@ -103,6 +104,15 @@ const projects = [
     cover: chatCover,
     repo: "https://github.com/omarbadawiii-91/Temporary-Chat-App",
     tags: ["Flutter", "Real-time", "Messaging"],
+  },
+  {
+    title: "ToDo App",
+    category: "Productivity app",
+    description:
+      "A simple, elegant task manager with add, edit, complete, and delete flows, plus language and theme customization.",
+    cover: todoCover,
+    repo: "https://github.com/omarbadawiii-91/ToDo_App",
+    tags: ["Flutter", "Productivity", "Theming"],
   },
   {
     title: "Scanova",
