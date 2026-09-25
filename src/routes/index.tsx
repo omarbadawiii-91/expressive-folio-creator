@@ -291,6 +291,7 @@ function Portfolio() {
             <span className="hero-bg-line">DEVELOPER</span>
           </div>
 
+<<<<<<< HEAD
           {/* === Layer 2a: Flutter logo — TOP half (upper bolt triangle) — behind person === */}
           <div
             aria-hidden="true"
@@ -309,6 +310,12 @@ function Portfolio() {
             style={{
               clipPath: 'inset(55% 0 0 0)',
             }}
+=======
+          {/* === Layer 2: Official Flutter logo — transparent and centered behind Omar === */}
+          <div
+            aria-hidden="true"
+            className="hero-logo pointer-events-none absolute bottom-[9%] left-1/2 z-[1] -translate-x-1/2 select-none"
+>>>>>>> 5fc2ae12d9809cca34209767659fdb1beb36db9e
           >
             <FlutterLogo className="h-auto w-52 sm:w-64 md:w-72 lg:w-80" />
           </div>
